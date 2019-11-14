@@ -53,4 +53,28 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>dev-fake</id>
+            <properties>
+                <spring.profiles.active>fake</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev-real</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>
