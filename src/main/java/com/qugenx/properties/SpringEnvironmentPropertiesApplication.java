@@ -2,6 +2,7 @@ package com.qugenx.properties;
 
 import com.qugenx.properties.resource.PropsModelResource;
 import com.qugenx.properties.resource.ConfigPropertiesResource;
+import com.qugenx.properties.resource.UserResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class SpringEnvironmentPropertiesApplication implements CommandLineRunner
     @Autowired
     ConfigPropertiesResource configProp;
 
+    @Autowired
+    private UserResource userResource;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringEnvironmentPropertiesApplication.class, args);
     }
@@ -30,6 +34,9 @@ public class SpringEnvironmentPropertiesApplication implements CommandLineRunner
     @PostConstruct
     private void init(){
         LOG.info("Spring Boot init - AppName: " + propsModelResource.getAppUrl());
+
+        //Get User Name by Specific Profile (dev, prod, qa...)
+        LOG.info("Spring Boot init - userName: " + userResource.getUserName());
     }
 
 
