@@ -39,6 +39,18 @@
     </dependencies>
 
     <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <filters>
+            <filter>src/main/filters/filter_${filter.mode}.properties</filter>
+        </filters>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -52,6 +64,7 @@
             <id>dev-fake</id>
             <properties>
                 <spring.profiles.active>fake</spring.profiles.active>
+                <filter.mode>local</filter.mode>
             </properties>
         </profile>
         <profile>
@@ -61,12 +74,14 @@
             </activation>
             <properties>
                 <spring.profiles.active>dev</spring.profiles.active>
+                <filter.mode>local</filter.mode>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
                 <spring.profiles.active>prod</spring.profiles.active>
+                <filter.mode>remote</filter.mode>
             </properties>
         </profile>
     </profiles>

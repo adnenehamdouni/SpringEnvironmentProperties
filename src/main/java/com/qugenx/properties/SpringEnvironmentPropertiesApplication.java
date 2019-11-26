@@ -1,5 +1,6 @@
 package com.qugenx.properties;
 
+import com.qugenx.properties.resource.EnvPropertiesLoadResource;
 import com.qugenx.properties.resource.PropsModelResource;
 import com.qugenx.properties.resource.ConfigPropertiesResource;
 import com.qugenx.properties.resource.UserResource;
@@ -27,6 +28,9 @@ public class SpringEnvironmentPropertiesApplication implements CommandLineRunner
     @Autowired
     private UserResource userResource;
 
+    @Autowired
+    private EnvPropertiesLoadResource envPropertiesLoadResource;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringEnvironmentPropertiesApplication.class, args);
     }
@@ -50,6 +54,9 @@ public class SpringEnvironmentPropertiesApplication implements CommandLineRunner
 
         LOG.info("EXECUTING : command line runner propsModelResource appUrl = {} using testing.properties",
                 propsModelResource.getAppUrl());
+
+        LOG.info("EXECUTING : command line runner envPropertiesLoadResource filter Mode Name = {} using testing.properties",
+                envPropertiesLoadResource.getFilterModeName());
 
     }
 }
