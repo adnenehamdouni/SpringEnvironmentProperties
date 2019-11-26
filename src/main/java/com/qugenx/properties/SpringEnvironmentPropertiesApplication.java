@@ -10,10 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
+/**
+ * As of Spring Boot 2.2, Spring finds and registers @ConfigurationProperties
+ * classes via classpath scanning. Therefore, there is no need to annotate such
+ * classes with @Component (and other meta-annotations like @Configuration) or
+ * even use the @EnableConfigurationProperties
+ *
+ * Also, we can use the @ConfigurationPropertiesScan annotation to scan custom
+ * locations for configuration property classes
+ */
+@EnableConfigurationProperties(ConfigProperties.class)
+//@ConfigurationPropertiesScan("com.baeldung.properties")
 public class SpringEnvironmentPropertiesApplication implements CommandLineRunner {
 
     private static Logger LOG = LoggerFactory
